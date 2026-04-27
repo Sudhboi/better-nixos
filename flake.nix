@@ -34,16 +34,10 @@
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = args;
         };
-      makeConfig =
-        func:
-        builtins.listToAttrs
-          (map (name: {
-            ${name} = func "${name}";
-          }))
-          [
-            "hornet"
-            "knight"
-          ];
+      makeConfig = func: {
+        hornet = func "hornet";
+        knight = func "knight";
+      };
     in
     {
       nixosConfigurations = makeConfig makeSystem;
