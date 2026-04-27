@@ -19,31 +19,32 @@
     }:
     let
       system = "x86_64-linux";
-      args = { inherit inputs; };
       makeSystem =
         host:
         nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${host}/configuration.nix ];
           inherit system;
-          specialArgs = args;
+          specialArgs = { inherit inputs; };
         };
       makeUser =
         host:
         home-manager.lib.homeManagerConfiguration {
           modules = [
             ./hosts/${host}/home.nix
-            { home.hostname = "${host}"; }
           ];
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = args;
+          extraSpecialArgs = {
+            inherit inputs;
+            hostName = host;
+          };
         };
-      makeConfig = prefix: func: {
-        "${prefix}hornet" = func "hornet";
-        "${prefix}knight" = func "knight";
+      makeConfig = func: {
+        "hornet" = func "hornet";
+        "knight" = func "knight";
       };
     in
     {
-      nixosConfigurations = makeConfig "" makeSystem;
-      homeConfigurations = makeConfig "sudhirk@" makeUser;
+      nixosConfigurations = makeConfig makeSystem;
+      homeConfigurations = makeUser makeSystem;
     };
 }
