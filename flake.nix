@@ -17,7 +17,7 @@
       makeSystem =
         host:
         nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/${host}/configuration.nix ];
+          modules = [ ./nixos/nixos.nix ];
           inherit system;
           specialArgs = args host;
         };
