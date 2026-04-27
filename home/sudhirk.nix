@@ -7,6 +7,7 @@
 {
   imports = [
     ./shell/shell_stuff.nix
+    ./editor/editor.nix
   ];
 
   home.username = "sudhirk";
