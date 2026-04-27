@@ -16,6 +16,7 @@
     ./nixLd/nixLd.nix
     ./networking/networking.nix
     ./windowManager/windowManager.nix
+    ./programs/programs.nix
   ];
 
   boot.loader.grub.enable = true;

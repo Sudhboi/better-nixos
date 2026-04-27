@@ -1,0 +1,4 @@
+{ ... }:
+{
+  programs.nh.enable = true;
+}
