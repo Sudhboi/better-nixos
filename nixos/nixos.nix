@@ -1,9 +1,14 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  hostName,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ../hosts/${hostName}/hardware-configuration.nix
   ];
 
   # Bootloader.
