@@ -10,12 +10,16 @@
     }:
     let
       system = "x86_64-linux";
+      args = host: {
+        inherit inputs;
+        hostName = "${host}";
+      };
       makeSystem =
         host:
         nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${host}/configuration.nix ];
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = args host;
         };
       makeUser =
         host:
@@ -26,10 +30,7 @@
             }
           ];
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = {
-            inherit inputs;
-            hostName = "${host}";
-          };
+          extraSpecialArgs = args host;
         };
       makeConfig = func: {
         "hornet" = func "hornet";
