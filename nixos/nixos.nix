@@ -7,8 +7,7 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    ../hosts/${hostName}/hardware-configuration.nix
+    ../hosts/hornet/hardware-configuration.nix
     # ./boot/boot.nix
     ./packages/packages.nix
     ./users/users.nix
@@ -19,12 +18,9 @@
     ./windowManager/windowManager.nix
   ];
 
-  # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
