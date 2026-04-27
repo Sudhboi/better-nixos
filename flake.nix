@@ -30,7 +30,9 @@
         host:
         home-manager.lib.homeManagerConfiguration {
           modules = [
-            ./hosts/${host}/home.nix
+            {
+              imports = [ ./home/sudhirk.nix ];
+            }
           ];
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = {

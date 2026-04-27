@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ../../users/sudhirk.nix
+    ../../home/sudhirk.nix
   ];
 }
