@@ -30,17 +30,20 @@
       makeUser =
         host:
         home-manager.lib.homeManagerConfiguration {
-          modules = [ ./hosts/${host}/home.nix ];
+          modules = [
+            ./hosts/${host}/home.nix
+            { home.hostname = "${host}"; }
+          ];
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = args;
         };
-      makeConfig = func: {
-        hornet = func "hornet";
-        knight = func "knight";
+      makeConfig = prefix: func: {
+        "${prefix}hornet" = func "hornet";
+        "${prefix}knight" = func "knight";
       };
     in
     {
-      nixosConfigurations = makeConfig makeSystem;
-      homeConfigurations = makeConfig makeUser;
+      nixosConfigurations = makeConfig "" makeSystem;
+      homeConfigurations = makeConfig "sudhirk@" makeUser;
     };
 }
