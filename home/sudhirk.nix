@@ -13,7 +13,7 @@
   home.packages = [
     pkgs.lib.mkIf
     config.host.hornet
-    [ pkgs.yazi ]
+    pkgs.yazi
   ];
 
   home.sessionVariables = {
