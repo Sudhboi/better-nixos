@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  hostName,
+  ...
+}:
 
 {
   home.username = "sudhirk";
@@ -6,9 +11,7 @@
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
-    yazi
-  ];
+  home.packages = if hostName == "hornet" then [ pkgs.yazi ] else [ ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
