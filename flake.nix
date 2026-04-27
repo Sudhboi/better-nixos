@@ -37,7 +37,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = {
             inherit inputs;
-            hostName = host;
+            config.host.${host} = true;
           };
         };
       makeConfig = func: {

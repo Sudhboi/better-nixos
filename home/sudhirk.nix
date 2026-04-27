@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  hostName,
   ...
 }:
 
@@ -11,7 +10,11 @@
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  home.packages = if hostName == "knight" then [ pkgs.yazi ] else [ ];
+  home.packages = [
+    pkgs.lib.mkIf
+    config.host.hornet
+    [ pkgs.yazi ]
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
