@@ -45,6 +45,6 @@
     in
     {
       nixosConfigurations = makeConfig makeSystem;
-      homeConfigurations = makeUser makeSystem;
+      homeConfigurations = makeConfig makeUser;
     };
 }
