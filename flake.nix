@@ -1,15 +1,6 @@
 {
   description = "SKONG!!!";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs =
     inputs@{
       self,
@@ -37,7 +28,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = {
             inherit inputs;
-            config.hostName.${host} = true;
+            hostName = "${host}";
           };
         };
       makeConfig = func: {
@@ -49,4 +40,13 @@
       nixosConfigurations = makeConfig makeSystem;
       homeConfigurations = makeConfig makeUser;
     };
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 }
