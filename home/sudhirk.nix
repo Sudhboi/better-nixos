@@ -14,6 +14,7 @@
     if (hostName == "hornet") then
       [
         pkgs.yazi
+        pkgs.neovim
       ]
     else
       [ ];
