@@ -11,9 +11,7 @@
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
   home.packages = [
-    pkgs.lib.mkIf
-    config.host.hornet
-    pkgs.yazi
+    (pkgs.lib.mkIf config.host.hornet pkgs.yazi)
   ];
 
   home.sessionVariables = {
