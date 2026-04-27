@@ -9,14 +9,16 @@
   imports = [
     # Include the results of the hardware scan.
     ../hosts/${hostName}/hardware-configuration.nix
+    ./packages/packages.nix
   ];
+
+  networking.hostName = "${hostName}"; # Define your hostname.
 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "hornet"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.qemuGuest.enable = true;
@@ -57,10 +59,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
