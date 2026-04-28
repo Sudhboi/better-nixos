@@ -8,6 +8,7 @@
   imports = [
     ./shell/shell_stuff.nix
     ./editor/editor.nix
+    ./windowManager/windowManager.nix
   ];
 
   home.username = "sudhirk";

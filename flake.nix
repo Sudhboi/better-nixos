@@ -10,9 +10,14 @@
     }:
     let
       system = "x86_64-linux";
+      userPreferences = {
+        windowManager = "niri";
+        terminalEmulator = "kitty";
+      };
       args = host: {
         inherit inputs;
         hostName = "${host}";
+        inherit userPreferences;
       };
       makeSystem =
         host:
@@ -48,6 +53,10 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
     };
   };
 }

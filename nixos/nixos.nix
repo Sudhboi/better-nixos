@@ -1,14 +1,12 @@
-{
-  config,
-  pkgs,
-  hostName,
-  ...
-}:
+{ hostName, ... }:
 
+let
+  inVm = true;
+in
 {
   imports = [
-    ../hosts/hornet/hardware-configuration.nix
-    # ./boot/boot.nix
+    ../hosts/${hostName}/hardware-configuration.nix
+    (if inVm then ./boot/vm.nix else ./boot/boot.nix)
     ./packages/packages.nix
     ./users/users.nix
     ./shell/zsh.nix
@@ -17,19 +15,14 @@
     ./networking/networking.nix
     ./windowManager/windowManager.nix
     ./programs/programs.nix
+    ./services/services.nix
+    ./graphics/graphics.nix
   ];
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
-
-  system.stateVersion = "25.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
+  system.stateVersion = "25.11"; # Did you read the comment?
 }

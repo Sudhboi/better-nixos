@@ -1,0 +1,4 @@
+{ terminalEmulator, ... }:
+{
+  imports = [ ./${terminalEmulator}.nix ];
+}
