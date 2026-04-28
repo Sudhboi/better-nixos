@@ -9,6 +9,7 @@
     ./shell/shell_stuff.nix
     ./editor/editor.nix
     ./windowManager/windowManager.nix
+    ./terminalEmulator/terminalEmulator.nix
   ];
 
   home.username = "sudhirk";
