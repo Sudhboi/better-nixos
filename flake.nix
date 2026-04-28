@@ -10,14 +10,11 @@
     }:
     let
       system = "x86_64-linux";
-      userPreferences = {
-        terminalEmulator = "kitty";
-      };
       args = host: {
         hostName = "${host}";
+        terminalEmulator = "kitty";
         windowManager = "niri";
         inherit inputs;
-        inherit userPreferences;
       };
       makeSystem =
         host:
