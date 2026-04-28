@@ -2,7 +2,7 @@
 {
   imports = [ inputs.niri.homeModules.niri ];
 
-  programs.niri.config = ''
+  home.file.".config/niri.kdl".source = ''
     include modules/animations.kdl
   '';
 
