@@ -217,6 +217,7 @@
             Mod+Shift+WheelScrollUp { focus-column-left; }
             Mod+Space { spawn-sh "vicinae toggle"; }
             Mod+W { spawn-sh "kitty --hold fastfetch"; }
+            Ctrl+Alt+Space {spawn-sh "kitty"; }
             Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
             Mod+TouchpadScrollUp { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
             Mod+U { focus-workspace-down; }
