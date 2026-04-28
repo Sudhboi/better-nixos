@@ -2,8 +2,8 @@
 {
   imports = [ inputs.niri.homeModules.niri ];
 
-  home.file.".config/niri.kdl".source = ''
-    include modules/animations.kdl
+  programs.niri.config = ''
+    include "modules/animations.kdl"
   '';
 
   home.file.".config/niri/scripts/niri_tile_to_n.py".source = ./scripts/niri_tile_to_n.py;
