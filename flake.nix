@@ -57,6 +57,7 @@
 
     niri = {
       url = "github:sodiboo/niri-flake";
+      inputs.niri.follows = "nixpkgs";
     };
   };
 }
